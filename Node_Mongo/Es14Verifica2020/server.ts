@@ -25,7 +25,7 @@ dispatcher.addListener("POST", "/api/servizio1", function(req, res){
     if (!err) {
       let db = client.db(DB_NAME);
       let collection = db.collection("vallauri");
-      collection.find({"$and":[{"$gte":{"dob":dataStart}}, {"$lte":{"dob":dataEnd}}]})
+      collection.find({"$and":[{"dob":{"$gte":dataStart, "$lte":dataEnd}}]})
       .project({"nome":1, "classe":1})
       .toArray((err, data) => {
         if (!err) {
